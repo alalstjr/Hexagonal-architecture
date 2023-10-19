@@ -6,7 +6,7 @@ import com.example.hexagonal.application.port.in.dto.MacBookDto;
 import com.example.hexagonal.application.port.out.MacBookManagementOutPort;
 import com.example.hexagonal.application.usecase.MacBookUseCase;
 import com.example.hexagonal.domain.vo.Battery;
-import com.example.hexagonal.framework.adapter.out.persistence.MacBookJpaMapper;
+import com.example.hexagonal.framework.adapter.out.persistence.mapper.MacBookJpaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,9 @@
-package com.example.hexagonal.framework.adapter.out.persistence;
+package com.example.hexagonal.framework.adapter.out.persistence.mapper;
 
 import com.example.hexagonal.application.port.in.dto.MacBookDto;
 import com.example.hexagonal.domain.entity.MacBook;
+import com.example.hexagonal.framework.adapter.out.persistence.entity.BatteryJpaEntity;
+import com.example.hexagonal.framework.adapter.out.persistence.entity.MacBookJpaEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MapperConfig;
 import org.mapstruct.Mapping;
@@ -12,15 +14,16 @@ import org.mapstruct.factory.Mappers;
 @MapperConfig(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface MacBookJpaMapper {
 
-    // 매퍼 팩토리(종속성 주입 없이 사용하도록 설정)
     MacBookJpaMapper INSTANCE = Mappers.getMapper(MacBookJpaMapper.class);
 
     MacBookDto domainEntityToDto(MacBook domainEntity);
 
     MacBookJpaEntity domainEntityToEntityJpa(MacBook domainEntity, Long batteryId);
 
-    @Mapping(source = "macBookJpaEntity.code", target = "code")
+    @Mapping(target = "code", source = "macBookJpaEntity.code")
+    @Mapping(target = "battery.chargeStatus", source = "batteryJpaEntity.chargeStatus")
     MacBook jpaEntityToDomainEntity(MacBookJpaEntity macBookJpaEntity, BatteryJpaEntity batteryJpaEntity);
 
-    MacBook jpaEntityToDomainEntitys(MacBookDto macBookDto);
+    @Mapping(target = "battery.chargeStatus", source = "chargeStatus")
+    MacBook fragmentToDomainEntity(String name, Boolean chargeStatus);
 }

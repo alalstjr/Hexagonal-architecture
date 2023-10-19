@@ -1,4 +1,4 @@
-package com.example.hexagonal.framework.adapter.out.persistence;
+package com.example.hexagonal.framework.adapter.out.persistence.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
