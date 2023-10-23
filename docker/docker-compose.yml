@@ -1,0 +1,28 @@
+# Docker Compose 파일에서 volumes 설정으로 호스트와 컨테이너 간 디렉토리를 마운트할 수 있습니다.
+# 하지만 호스트 디렉토리가 미리 생성되어 있어야 합니다.
+# 호스트 디렉토리가 없으면, docker-compose up 명령을 실행할 때 다음과 같은 오류가 발생할 수 있습니다.
+# 호스트 디렉토리가 없을 때 자동으로 생성하려면, volumes 설정에 아래와 같은 옵션을 추가하면 됩니다.
+# volumes:
+#  - ~/data/test:/data/db # -v 옵션 (다렉토리 마운트 설정)
+#  - test-data:/test
+# volumes:
+#  test-data:
+
+version: "3.8" # 파일 규격 버전
+services: # 이 항목 밑에 실행하려는 컨테이너 들을 정의
+  mongodb: # 서비스 명
+    image: mongo:5.0 # 사용할 이미지
+    restart: always
+    container_name: mongo-db # 컨테이너 이름 설정
+    ports:
+      - "27017:27017" # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)
+    environment: # -e 옵션
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=mongo-db
+      - TZ=Asia/Seoul
+    volumes:
+      - ~/data/test:/data/db # -v 옵션 (다렉토리 마운트 설정)
+      - test-data:/test
+volumes:
+  test-data:

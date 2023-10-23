@@ -1,0 +1,20 @@
+# Default Setting
+server:
+  port: 8080
+spring:
+  application:
+    name: hexagonal
+  config:
+    import:
+      - application-db.yaml
+  profiles:
+    group:
+      default:
+        - local
+      local:
+#        - h2
+        - mongodb
+  # JPA
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: update

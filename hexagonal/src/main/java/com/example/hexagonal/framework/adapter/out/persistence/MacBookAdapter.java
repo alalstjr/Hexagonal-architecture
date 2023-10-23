@@ -13,6 +13,7 @@ import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -41,6 +42,6 @@ public class MacBookAdapter implements MacBookManagementOutPort {
         return this.macBookRepository.findAllMacBook()
                 .stream()
                 .map(v -> MacBookJpaMapper.INSTANCE.fragmentToDomainEntity(v.macbookName(), v.chargeStatus()))
-                .toList();
+                .collect(Collectors.toList());
     }
 }
