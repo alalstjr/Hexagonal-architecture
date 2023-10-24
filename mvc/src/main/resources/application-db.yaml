@@ -1,0 +1,19 @@
+spring.config.activate.on-profile: h2
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  h2.console.enabled: true
+---
+spring.config.activate.on-profile: mongodb
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      authentication-database: admin
+      username: root
+      password: root
+      database: mongo-db

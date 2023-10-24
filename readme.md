@@ -4,6 +4,12 @@
 
 기존에는 mysql 로 연결되어 있었지만 mongodb 로 바꾸는 작업을 진행한다.
 
+## 사전준비
+
+### QueryDSL 사전준비
+
+Gradle -> Tasks -> other -> compileJava 실행해서 Qfile 생성
+
 ### API
 
 - 맥북을 저장
