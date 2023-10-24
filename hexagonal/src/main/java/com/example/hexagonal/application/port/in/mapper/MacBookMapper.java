@@ -1,4 +1,4 @@
-package com.example.hexagonal.application.port.in;
+package com.example.hexagonal.application.port.in.mapper;
 
 import com.example.hexagonal.application.port.in.dto.MacBookCreateDto;
 import com.example.hexagonal.application.port.in.dto.MacBookDto;

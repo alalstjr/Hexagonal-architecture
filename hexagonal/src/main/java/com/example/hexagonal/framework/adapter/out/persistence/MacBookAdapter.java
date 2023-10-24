@@ -10,12 +10,14 @@ import com.example.hexagonal.framework.adapter.out.persistence.repository.Batter
 import com.example.hexagonal.framework.adapter.out.persistence.repository.MacBookRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.context.annotation.Primary;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Log4j2
+@Primary
 @RequiredArgsConstructor
 @PersistenceAdapter
 public class MacBookAdapter implements MacBookManagementOutPort {

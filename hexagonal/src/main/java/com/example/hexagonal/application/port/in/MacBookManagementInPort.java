@@ -3,6 +3,7 @@ package com.example.hexagonal.application.port.in;
 import com.example.hexagonal.application.exception.CommonServiceException;
 import com.example.hexagonal.application.port.in.dto.MacBookCreateDto;
 import com.example.hexagonal.application.port.in.dto.MacBookDto;
+import com.example.hexagonal.application.port.in.mapper.MacBookMapper;
 import com.example.hexagonal.application.port.out.MacBookManagementOutPort;
 import com.example.hexagonal.application.usecase.MacBookUseCase;
 import com.example.hexagonal.domain.vo.Battery;
