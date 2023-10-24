@@ -26,7 +26,7 @@ db.MACBOOK.find();
 db.BATTERY.find();
 ~~~
 
-## 상황 발생
+### 상황 발생
 
 사용자의 요청으로 JPA-MySQL 에서 MongoDB 로 전환해야 하는 상황  
 개발자는 비즈니스 코드에 피해를 주지 않고도 기술 코드를 변경해야 합니다.  
@@ -36,3 +36,13 @@ out 패키지에 mongodb 기능 코드를 구현하고 `MacBookMongoAdapter` 에
 
 이렇게 되면 최종적으로 `framework.adapter` 의 변경만으로 DB 를 교체할 수 있었다.  
 비즈니스 로직에 영향이 가지 않았다.
+
+## MVC 아키텍처
+
+### 상황 발생
+
+사용자의 요청으로 JPA-MySQL 에서 MongoDB 로 전환해야 하는 상황  
+JPA-MySQL 을 완전 삭제가 아닌 추 후 에 다시 돌아갈 수 도 있는 상황임을 인지해야함.  
+
+MVC 아키텍처의 경우 전환시 비즈니스 코드를 (Service) 수정해야함  
+Service 와 JPA Entity 가 서로 의존하고 있기 때문이다.
