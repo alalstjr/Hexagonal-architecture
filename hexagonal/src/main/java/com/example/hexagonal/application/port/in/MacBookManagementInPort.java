@@ -39,4 +39,17 @@ public class MacBookManagementInPort implements MacBookUseCase {
                 .map(MacBookMapper.INSTANCE::domainEntityToDto)
                 .toList();
     }
+
+    @Override
+    public MacBookDto findById(String id) {
+        return this.macBookManagementOutPort.findById(id)
+                .map(MacBookMapper.INSTANCE::domainEntityToDto)
+                .orElseThrow(() -> new CommonServiceException(HttpStatus.UNPROCESSABLE_ENTITY, "ID 를 찾을 수 없습니다."))
+                ;
+    }
+
+    @Override
+    public MacBookDto delete(String id) {
+        return null;
+    }
 }

@@ -26,4 +26,9 @@ public class MacBookController {
     public List<MacBookDto> findAll() {
         return this.macBookUseCase.findAll();
     }
+
+    @GetMapping("/{macbookId}")
+    public MacBookDto findById(@PathVariable("macbookId") String macbookId) {
+        return this.macBookUseCase.findById(macbookId);
+    }
 }

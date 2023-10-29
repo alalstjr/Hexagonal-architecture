@@ -8,13 +8,12 @@ import com.example.hexagonal.framework.adapter.out.mongodb.mapper.BatteryMongoMa
 import com.example.hexagonal.framework.adapter.out.mongodb.mapper.MacBookMongoMapper;
 import com.example.hexagonal.framework.adapter.out.mongodb.repository.BatteryMongoRepository;
 import com.example.hexagonal.framework.adapter.out.mongodb.repository.MacBookMongoRepository;
+import jakarta.persistence.PersistenceException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.context.annotation.Primary;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Log4j2
 //@Primary
@@ -48,6 +47,16 @@ public class MacBookMongoAdapter implements MacBookManagementOutPort {
                 )
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .collect(Collectors.toList());
+                .toList();
+    }
+
+    @Override
+    public Optional<MacBook> findById(String id) {
+        return Optional.ofNullable(this.macBookMongoRepository.findById(id)
+                .map(v -> this.batteryMongoRepository.findById(v.getBatteryId())
+                        .map(battery -> MacBookMongoMapper.INSTANCE.fragmentToDomainEntity(v.getName(), battery.getChargeStatus()))
+                        .orElseThrow(() -> new PersistenceException("맥북의 베터리를 찾을 수 없습니다."))
+                )
+                .orElseThrow(() -> new PersistenceException("맥북을 찾을 수 없습니다.")));
     }
 }

@@ -10,4 +10,8 @@ public interface MacBookUseCase {
     MacBookDto createMacBook(MacBookCreateDto macBookCreateDto);
 
     List<MacBookDto> findAll();
+
+    MacBookDto findById(String id);
+
+    MacBookDto delete(String id);
 }

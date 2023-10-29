@@ -4,10 +4,12 @@ import com.example.hexagonal.framework.adapter.out.persistence.data.MacBookFragm
 import com.example.hexagonal.framework.adapter.out.persistence.entity.QBatteryJpaEntity;
 import com.example.hexagonal.framework.adapter.out.persistence.entity.QMacBookJpaEntity;
 import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class MacBookRepositorySupportImpl implements MacBookRepositorySupport {
@@ -24,6 +26,15 @@ public class MacBookRepositorySupportImpl implements MacBookRepositorySupport {
 
     @Override
     public List<MacBookFragment> findAllMacBook() {
+        return getSelect().fetch();
+    }
+
+    @Override
+    public Optional<MacBookFragment> findByIdMacBook(Long id) {
+        return Optional.ofNullable(getSelect().where(qMacBookJpa.id.eq(id)).fetchFirst());
+    }
+
+    private JPAQuery<MacBookFragment> getSelect() {
         return queryFactory
                 .from(qMacBookJpa)
                 .join(qBatteryJpa)
@@ -32,8 +43,6 @@ public class MacBookRepositorySupportImpl implements MacBookRepositorySupport {
                         MacBookFragment.class,
                         qMacBookJpa.name,
                         qBatteryJpa.chargeStatus
-                ))
-                .fetch()
-                ;
+                ));
     }
 }

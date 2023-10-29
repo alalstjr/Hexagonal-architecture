@@ -10,4 +10,6 @@ public interface MacBookManagementOutPort {
     Optional<MacBook> save(MacBook macBook);
 
     List<MacBook> findAll();
+
+    Optional<MacBook> findById(String id);
 }
