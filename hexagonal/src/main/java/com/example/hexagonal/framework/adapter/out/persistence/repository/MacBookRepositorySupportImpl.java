@@ -34,6 +34,11 @@ public class MacBookRepositorySupportImpl implements MacBookRepositorySupport {
         return Optional.ofNullable(getSelect().where(qMacBookJpa.id.eq(id)).fetchFirst());
     }
 
+    @Override
+    public Optional<MacBookFragment> findByCode(String code) {
+        return Optional.ofNullable(this.getSelect().where(qMacBookJpa.code.eq(code)).fetchOne());
+    }
+
     private JPAQuery<MacBookFragment> getSelect() {
         return queryFactory
                 .from(qMacBookJpa)

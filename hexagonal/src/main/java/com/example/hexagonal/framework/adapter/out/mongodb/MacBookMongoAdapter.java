@@ -59,4 +59,9 @@ public class MacBookMongoAdapter implements MacBookManagementOutPort {
                 )
                 .orElseThrow(() -> new PersistenceException("맥북을 찾을 수 없습니다.")));
     }
+
+    @Override
+    public Optional<MacBook> findByCode(String code) {
+        return Optional.empty();
+    }
 }

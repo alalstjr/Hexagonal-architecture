@@ -51,11 +51,16 @@ public class MacBookAdapter implements MacBookManagementOutPort {
     @Override
     public Optional<MacBook> findById(String id) {
         Optional<MacBookFragment> byIdMacBook = this.macBookRepository.findByIdMacBook(Long.parseLong(id));
-        if(byIdMacBook.isPresent()) {
+        if (byIdMacBook.isPresent()) {
             return Optional.of(MacBookJpaMapper.INSTANCE.fragmentToDomainEntity(byIdMacBook.get().macbookName(), byIdMacBook.get().chargeStatus()));
+        } else {
+            throw new PersistenceException("ID 값으로 맥북을 찾을 수 없습니다.");
         }
-        else {
-            throw new PersistenceException("맥북을 찾을 수 없습니다.");
-        }
+    }
+
+    @Override
+    public Optional<MacBook> findByCode(String code) {
+        Optional<MacBookFragment> byCode = this.macBookRepository.findByCode(code);
+        return byCode.map(macBookFragment -> MacBookJpaMapper.INSTANCE.fragmentToDomainEntity(macBookFragment.macbookName(), macBookFragment.chargeStatus()));
     }
 }

@@ -28,6 +28,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    compileOnly("org.springframework.boot:spring-boot-starter-validation")
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+
     // mapper
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")

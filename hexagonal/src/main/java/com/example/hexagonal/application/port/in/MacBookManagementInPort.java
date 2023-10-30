@@ -6,6 +6,7 @@ import com.example.hexagonal.application.port.in.dto.MacBookDto;
 import com.example.hexagonal.application.port.in.mapper.MacBookMapper;
 import com.example.hexagonal.application.port.out.MacBookManagementOutPort;
 import com.example.hexagonal.application.usecase.MacBookUseCase;
+import com.example.hexagonal.domain.entity.MacBook;
 import com.example.hexagonal.domain.vo.Battery;
 import com.example.hexagonal.framework.adapter.out.persistence.mapper.MacBookJpaMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +24,12 @@ public class MacBookManagementInPort implements MacBookUseCase {
 
     @Override
     public MacBookDto createMacBook(MacBookCreateDto macBookCreateDto) {
+        // 맥북을 생산하기 전 이미 존재하는 코드인지 확인합니다.
+        Optional<MacBook> byCode = this.macBookManagementOutPort.findByCode(macBookCreateDto.code());
+        if(byCode.isPresent()) {
+            throw new CommonServiceException(HttpStatus.CONFLICT, "이미 존재하는 MacBook { code } 입니다.");
+        }
+
         // 맥북을 생산하기 전 베터리를 장착해야합니다.
         Battery battery = Battery.builder().code("AAA111").chargeStatus(true).build();
 

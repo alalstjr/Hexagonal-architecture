@@ -12,4 +12,6 @@ public interface MacBookManagementOutPort {
     List<MacBook> findAll();
 
     Optional<MacBook> findById(String id);
+
+    Optional<MacBook> findByCode(String code);
 }
