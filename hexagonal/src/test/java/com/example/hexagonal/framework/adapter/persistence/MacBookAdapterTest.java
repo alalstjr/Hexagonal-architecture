@@ -1,43 +1,28 @@
 package com.example.hexagonal.framework.adapter.persistence;
 
-import com.example.hexagonal.application.exception.CommonServiceException;
 import com.example.hexagonal.application.port.in.MacBookManagementInPort;
 import com.example.hexagonal.application.port.in.dto.BatteryDto;
 import com.example.hexagonal.application.port.in.dto.MacBookCreateDto;
 import com.example.hexagonal.application.port.in.dto.MacBookDto;
-import com.example.hexagonal.application.port.out.MacBookManagementOutPort;
-import com.example.hexagonal.application.usecase.MacBookUseCase;
 import com.example.hexagonal.domain.entity.MacBook;
 import com.example.hexagonal.domain.vo.Battery;
 import com.example.hexagonal.framework.adapter.in.web.MacBookController;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(MacBookController.class)
-public class MacBookAdapterTest {
+class MacBookAdapterTest {
 
     @MockBean
     private MacBookManagementInPort macBookManagementInPort;
@@ -94,9 +79,7 @@ public class MacBookAdapterTest {
     void create_macbook_no_name() throws Exception {
         // Given
         MacBookCreateDto createDto = MacBookCreateDto.builder().code(mackBootCode).build();
-        macBookDto = MacBookDto.builder()
-                .battery(batteryDto)
-                .build();
+        macBookDto = MacBookDto.builder().battery(batteryDto).build();
         given(macBookManagementInPort.createMacBook(createDto)).willReturn(macBookDto);
 
         // Then
@@ -106,9 +89,9 @@ public class MacBookAdapterTest {
                 .andExpect(status().is5xxServerError());
     }
 
-    @Test
-    @DisplayName("맥북 생성하기 - 코드가 중복되는 경우")
-    void create_macbook_code_already_exists() {
-
-    }
+//    @Test
+//    @DisplayName("맥북 생성하기 - 코드가 중복되는 경우")
+//    void create_macbook_code_already_exists() {
+//
+//    }
 }
