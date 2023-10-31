@@ -1,4 +1,4 @@
-package com.example.hexagonal.framework.adapter.persistence;
+package com.example.hexagonal.framework.adapter;
 
 import com.example.hexagonal.application.port.in.MacBookManagementInPort;
 import com.example.hexagonal.application.port.in.dto.BatteryDto;
