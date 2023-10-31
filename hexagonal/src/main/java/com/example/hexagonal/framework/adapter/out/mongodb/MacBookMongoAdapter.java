@@ -54,8 +54,8 @@ public class MacBookMongoAdapter implements MacBookManagementOutPort {
     }
 
     @Override
-    public Optional<MacBook> findById(String id) {
-        return Optional.ofNullable(this.macBookMongoRepository.findById(id)
+    public Optional<MacBook> findById(Object id) {
+        return Optional.ofNullable(this.macBookMongoRepository.findById((String) id)
                 .map(v -> this.batteryMongoRepository.findById(v.getBatteryId())
                         .map(battery -> MacBookMongoMapper.INSTANCE.fragmentToDomainEntity(v.getName(), battery.getChargeStatus()))
                         .orElseThrow(() -> new PersistenceException(HttpStatus.NOT_FOUND, "맥북의 베터리를 찾을 수 없습니다."))

@@ -49,7 +49,7 @@ public class MacBookManagementInPort implements MacBookUseCase {
     }
 
     @Override
-    public MacBookDto findById(String id) {
+    public MacBookDto findById(Object id) {
         return this.macBookManagementOutPort.findById(id)
                 .map(MacBookMapper.INSTANCE::domainEntityToDto)
                 .orElseThrow(() -> new CommonServiceException(HttpStatus.UNPROCESSABLE_ENTITY, "ID 를 찾을 수 없습니다."))
@@ -57,7 +57,7 @@ public class MacBookManagementInPort implements MacBookUseCase {
     }
 
     @Override
-    public MacBookDto delete(String id) {
+    public MacBookDto delete(Object id) {
         return null;
     }
 }

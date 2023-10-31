@@ -11,7 +11,7 @@ public interface MacBookUseCase {
 
     List<MacBookDto> findAll();
 
-    MacBookDto findById(String id);
+    MacBookDto findById(Object id);
 
-    MacBookDto delete(String id);
+    MacBookDto delete(Object id);
 }

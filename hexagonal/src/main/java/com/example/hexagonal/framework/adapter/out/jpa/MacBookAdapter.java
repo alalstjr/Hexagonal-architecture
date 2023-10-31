@@ -49,8 +49,8 @@ public class MacBookAdapter implements MacBookManagementOutPort {
     }
 
     @Override
-    public Optional<MacBook> findById(String id) {
-        Optional<MacBookFragment> byIdMacBook = this.macBookRepository.findByIdMacBook(Long.parseLong(id));
+    public Optional<MacBook> findById(Object id) {
+        Optional<MacBookFragment> byIdMacBook = this.macBookRepository.findByIdMacBook((Long) id);
         if (byIdMacBook.isPresent()) {
             return Optional.of(MacBookJpaMapper.INSTANCE.fragmentToDomainEntity(byIdMacBook.get().macbookName(), byIdMacBook.get().chargeStatus()));
         } else {
