@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Log4j2
-@Primary
+//@Primary
 @RequiredArgsConstructor
 @PersistenceAdapter
 public class MacBookAdapter implements MacBookManagementOutPort {

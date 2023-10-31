@@ -12,8 +12,8 @@ spring:
       default:
         - local
       local:
-        - h2
-#        - mongodb
+#        - h2
+        - mongodb
   # JPA
   jpa:
     show-sql: true
