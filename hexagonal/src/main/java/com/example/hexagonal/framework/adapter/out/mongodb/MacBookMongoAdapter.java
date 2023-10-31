@@ -4,6 +4,7 @@ import com.example.hexagonal.application.port.out.MacBookManagementOutPort;
 import com.example.hexagonal.common.PersistenceAdapter;
 import com.example.hexagonal.domain.entity.MacBook;
 import com.example.hexagonal.framework.adapter.out.mongodb.entity.BatteryMongoEntity;
+import com.example.hexagonal.framework.adapter.out.mongodb.entity.MacBookMongoEntity;
 import com.example.hexagonal.framework.adapter.out.mongodb.mapper.BatteryMongoMapper;
 import com.example.hexagonal.framework.adapter.out.mongodb.mapper.MacBookMongoMapper;
 import com.example.hexagonal.framework.adapter.out.mongodb.repository.BatteryMongoRepository;
@@ -63,11 +64,9 @@ public class MacBookMongoAdapter implements MacBookManagementOutPort {
 
     @Override
     public Optional<MacBook> findByCode(String code) {
-        return Optional.ofNullable(this.macBookMongoRepository.findByCode(code)
-                .map(v -> this.batteryMongoRepository.findById(v.getBatteryId())
-                        .map(battery -> MacBookMongoMapper.INSTANCE.fragmentToDomainEntity(v.getName(), battery.getChargeStatus()))
-                        .orElseThrow(() -> new PersistenceException("맥북의 베터리를 찾을 수 없습니다."))
-                )
-                .orElseThrow(() -> new PersistenceException("맥북을 찾을 수 없습니다.")));
+        Optional<MacBookMongoEntity> byCode = this.macBookMongoRepository.findByCode(code);
+        return byCode.map(macBookMongoEntity -> this.batteryMongoRepository.findById(macBookMongoEntity.getBatteryId())
+                .map(battery -> MacBookMongoMapper.INSTANCE.fragmentToDomainEntity(macBookMongoEntity.getName(), battery.getChargeStatus()))
+                .orElseThrow(() -> new PersistenceException("맥북의 베터리를 찾을 수 없습니다.")));
     }
 }
