@@ -1,9 +1,9 @@
-package com.example.hexagonal.framework.adapter.out.persistence.mapper;
+package com.example.hexagonal.framework.adapter.out.jpa.mapper;
 
 import com.example.hexagonal.application.port.in.dto.MacBookDto;
 import com.example.hexagonal.domain.entity.MacBook;
-import com.example.hexagonal.framework.adapter.out.persistence.entity.BatteryJpaEntity;
-import com.example.hexagonal.framework.adapter.out.persistence.entity.MacBookJpaEntity;
+import com.example.hexagonal.framework.adapter.out.jpa.entity.BatteryJpaEntity;
+import com.example.hexagonal.framework.adapter.out.jpa.entity.MacBookJpaEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MapperConfig;
 import org.mapstruct.Mapping;

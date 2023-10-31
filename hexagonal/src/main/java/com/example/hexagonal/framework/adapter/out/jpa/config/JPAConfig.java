@@ -1,4 +1,4 @@
-package com.example.hexagonal.framework.adapter.out.persistence.config;
+package com.example.hexagonal.framework.adapter.out.jpa.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

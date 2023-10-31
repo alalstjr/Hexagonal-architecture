@@ -1,8 +1,8 @@
-package com.example.hexagonal.framework.adapter.out.persistence.repository;
+package com.example.hexagonal.framework.adapter.out.jpa.repository;
 
-import com.example.hexagonal.framework.adapter.out.persistence.data.MacBookFragment;
-import com.example.hexagonal.framework.adapter.out.persistence.entity.QBatteryJpaEntity;
-import com.example.hexagonal.framework.adapter.out.persistence.entity.QMacBookJpaEntity;
+import com.example.hexagonal.framework.adapter.out.jpa.data.MacBookFragment;
+import com.example.hexagonal.framework.adapter.out.jpa.entity.QBatteryJpaEntity;
+import com.example.hexagonal.framework.adapter.out.jpa.entity.QMacBookJpaEntity;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;

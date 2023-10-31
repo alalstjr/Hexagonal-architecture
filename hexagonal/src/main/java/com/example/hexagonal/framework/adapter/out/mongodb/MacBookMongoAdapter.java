@@ -9,10 +9,11 @@ import com.example.hexagonal.framework.adapter.out.mongodb.mapper.BatteryMongoMa
 import com.example.hexagonal.framework.adapter.out.mongodb.mapper.MacBookMongoMapper;
 import com.example.hexagonal.framework.adapter.out.mongodb.repository.BatteryMongoRepository;
 import com.example.hexagonal.framework.adapter.out.mongodb.repository.MacBookMongoRepository;
-import jakarta.persistence.PersistenceException;
+import com.example.hexagonal.framework.exception.PersistenceException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,9 +58,9 @@ public class MacBookMongoAdapter implements MacBookManagementOutPort {
         return Optional.ofNullable(this.macBookMongoRepository.findById(id)
                 .map(v -> this.batteryMongoRepository.findById(v.getBatteryId())
                         .map(battery -> MacBookMongoMapper.INSTANCE.fragmentToDomainEntity(v.getName(), battery.getChargeStatus()))
-                        .orElseThrow(() -> new PersistenceException("맥북의 베터리를 찾을 수 없습니다."))
+                        .orElseThrow(() -> new PersistenceException(HttpStatus.NOT_FOUND, "맥북의 베터리를 찾을 수 없습니다."))
                 )
-                .orElseThrow(() -> new PersistenceException("맥북을 찾을 수 없습니다.")));
+                .orElseThrow(() -> new PersistenceException(HttpStatus.NOT_FOUND, "ID 값으로 맥북을 찾을 수 없습니다.")));
     }
 
     @Override
@@ -67,6 +68,6 @@ public class MacBookMongoAdapter implements MacBookManagementOutPort {
         Optional<MacBookMongoEntity> byCode = this.macBookMongoRepository.findByCode(code);
         return byCode.map(macBookMongoEntity -> this.batteryMongoRepository.findById(macBookMongoEntity.getBatteryId())
                 .map(battery -> MacBookMongoMapper.INSTANCE.fragmentToDomainEntity(macBookMongoEntity.getName(), battery.getChargeStatus()))
-                .orElseThrow(() -> new PersistenceException("맥북의 베터리를 찾을 수 없습니다.")));
+                .orElseThrow(() -> new PersistenceException(HttpStatus.NOT_FOUND, "맥북의 베터리를 찾을 수 없습니다.")));
     }
 }

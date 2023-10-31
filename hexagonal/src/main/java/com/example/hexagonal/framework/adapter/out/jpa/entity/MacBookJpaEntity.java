@@ -1,4 +1,4 @@
-package com.example.hexagonal.framework.adapter.out.persistence.entity;
+package com.example.hexagonal.framework.adapter.out.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,15 +11,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "BATTERY")
-public class BatteryJpaEntity {
+@Table(name = "MACBOOK")
+public class MacBookJpaEntity {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    private Long batteryId;
+
+    private String name;
+
     @Column(unique = true)
     private String code;
-
-    private Boolean chargeStatus;
 }

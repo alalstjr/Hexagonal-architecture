@@ -1,4 +1,4 @@
-package com.example.hexagonal.framework.adapter.out.persistence.data;
+package com.example.hexagonal.framework.adapter.out.jpa.data;
 
 import lombok.Builder;
 

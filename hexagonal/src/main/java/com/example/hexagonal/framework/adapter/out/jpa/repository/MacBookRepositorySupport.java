@@ -1,7 +1,6 @@
-package com.example.hexagonal.framework.adapter.out.persistence.repository;
+package com.example.hexagonal.framework.adapter.out.jpa.repository;
 
-import com.example.hexagonal.domain.entity.MacBook;
-import com.example.hexagonal.framework.adapter.out.persistence.data.MacBookFragment;
+import com.example.hexagonal.framework.adapter.out.jpa.data.MacBookFragment;
 
 import java.util.List;
 import java.util.Optional;

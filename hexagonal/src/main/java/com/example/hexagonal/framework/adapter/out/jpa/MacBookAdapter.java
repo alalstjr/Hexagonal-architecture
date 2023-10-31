@@ -1,18 +1,18 @@
-package com.example.hexagonal.framework.adapter.out.persistence;
+package com.example.hexagonal.framework.adapter.out.jpa;
 
 import com.example.hexagonal.application.port.out.MacBookManagementOutPort;
 import com.example.hexagonal.common.PersistenceAdapter;
 import com.example.hexagonal.domain.entity.MacBook;
-import com.example.hexagonal.framework.adapter.out.persistence.data.MacBookFragment;
-import com.example.hexagonal.framework.adapter.out.persistence.entity.BatteryJpaEntity;
-import com.example.hexagonal.framework.adapter.out.persistence.mapper.BatteryJpaMapper;
-import com.example.hexagonal.framework.adapter.out.persistence.mapper.MacBookJpaMapper;
-import com.example.hexagonal.framework.adapter.out.persistence.repository.BatteryRepository;
-import com.example.hexagonal.framework.adapter.out.persistence.repository.MacBookRepository;
-import jakarta.persistence.PersistenceException;
+import com.example.hexagonal.framework.adapter.out.jpa.data.MacBookFragment;
+import com.example.hexagonal.framework.adapter.out.jpa.entity.BatteryJpaEntity;
+import com.example.hexagonal.framework.exception.PersistenceException;
+import com.example.hexagonal.framework.adapter.out.jpa.mapper.BatteryJpaMapper;
+import com.example.hexagonal.framework.adapter.out.jpa.mapper.MacBookJpaMapper;
+import com.example.hexagonal.framework.adapter.out.jpa.repository.BatteryRepository;
+import com.example.hexagonal.framework.adapter.out.jpa.repository.MacBookRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.context.annotation.Primary;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +54,7 @@ public class MacBookAdapter implements MacBookManagementOutPort {
         if (byIdMacBook.isPresent()) {
             return Optional.of(MacBookJpaMapper.INSTANCE.fragmentToDomainEntity(byIdMacBook.get().macbookName(), byIdMacBook.get().chargeStatus()));
         } else {
-            throw new PersistenceException("ID 값으로 맥북을 찾을 수 없습니다.");
+            throw new PersistenceException(HttpStatus.NOT_FOUND, "ID 값으로 맥북을 찾을 수 없습니다.");
         }
     }
 
