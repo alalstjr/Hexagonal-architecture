@@ -8,8 +8,16 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+        vendor = JvmVendorSpec.ADOPTIUM
+    }
+    compileJava {
+        options.encoding = "UTF-8"
+        options.fork = true
+    }
 }
+
 
 configurations {
     compileOnly {
@@ -49,4 +57,19 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+tasks {
+    bootJar {
+        archiveFileName.set("app.jar")
+        mainClass.set("com.example.hexagonal.HexagonalApplication")
+    }
+    bootRun {
+        mainClass.set("com.example.hexagonal.HexagonalApplication")
+        args(
+                "-server",
+                "-Xss256m",
+                "-Xmx1G",
+                "-Djava.net.preferIPv4Stack=true")
+    }
 }

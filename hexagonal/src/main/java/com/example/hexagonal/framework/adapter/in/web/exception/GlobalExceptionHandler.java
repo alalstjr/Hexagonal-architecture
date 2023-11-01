@@ -21,14 +21,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler
     public ProblemDetail handleCustomException(Exception throwable, WebRequest request) {
         // Error 의 원인과 Code 로 위치를 출력
-        log.error("Error {} => {}", throwable.hashCode(), throwable.getMessage());
+        log.error("Error [{}] => {}", throwable.hashCode(), throwable.getMessage());
 
         // Error 발생 원인 코드를 출력
         // 작성한 stackTrace 코드로 filter 패키지 위치 조건으로 추출
         Package pkg = HexagonalApplication.class.getPackage();
         StackTraceElement[] stackTrace = throwable.getStackTrace();
         List<StackTraceElement> stackTraceFilter = Arrays.stream(stackTrace).filter(s -> s.getClassName().contains(pkg.getName())).toList();
-        stackTraceFilter.forEach(log::error);
+        stackTraceFilter.forEach(t -> log.error("Trace [" + throwable.hashCode() + "] {}", t));
 
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         String message = status.getReasonPhrase();
@@ -39,7 +39,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         assert message != null;
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(status, message);
         problemDetail.setType(URI.create(request.getContextPath()));
-        problemDetail.setTitle("Error " + throwable.hashCode() + " => " + status.getReasonPhrase());
+        problemDetail.setTitle("Error [" + throwable.hashCode() + "] => " + status.getReasonPhrase());
         return problemDetail;
     }
 }
