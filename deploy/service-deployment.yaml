@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: service-hexagonal
-          image: 172.25.100.113:9001/docker-hosted/hexagonal
+          image: 192.168.75.144:9001/docker-hosted/hexagonal:latest
           command: [ "java" ]
           args: [ "-Djava.security.egd=file:/dev/./urandom", "-jar","/app.jar" ]
           imagePullPolicy: Always

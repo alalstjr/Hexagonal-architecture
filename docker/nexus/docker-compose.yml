@@ -1,23 +1,17 @@
 version: '3'
 services:
   nexus:
-    image: klo2k/nexus3:latest  # 또는 원하는 NEXUS 이미지 및 버전을 지정
+    image: sonatype/nexus3:latest  # 또는 원하는 NEXUS 이미지 및 버전을 지정
     container_name: nexus
     ports: # 호스트 포트와 컨테이너 포트를 매핑합니다. 필요에 따라 변경 가능
-      - "8443:8443"
       - "8081:8081"
       - "9001:9001"
     volumes:
       - ~/data/nexus:/nexus-data # -v 옵션 (다렉토리 마운트 설정)
       - nexus_data:/nexus
-      - ~/data/nexus/etc/ssl/keystore.jks:/opt/sonatype/nexus/etc/ssl/keystore.jks
-      - ~/data/nexus/etc/ssl/private.key:/opt/sonatype/nexus/etc/ssl/private.key
-      - ~/data/nexus/etc/ssl/certificate.crt:/opt/sonatype/nexus/etc/ssl/certificate.crt
     environment:
       - SONATYPE_WORK=/nexus-data/work
       - SONATYPE_TEMP=/nexus-data/tmp
-      - NEXUS_SSL_KEY_PATH=/etc/ssl/private/private.key
-      - NEXUS_SSL_CERT_PATH=/etc/ssl/certificate.crt
     networks:
       - nexus_network
 
