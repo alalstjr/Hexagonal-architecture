@@ -2,7 +2,7 @@ package com.example.hexagonal.framework.adapter.out.jpa;
 
 import com.example.hexagonal.application.port.out.MacBookManagementOutPort;
 import com.example.hexagonal.common.PersistenceAdapter;
-import com.example.hexagonal.domain.entity.MacBook;
+import com.example.hexagonal.domain.MacBook;
 import com.example.hexagonal.framework.adapter.out.jpa.data.MacBookFragment;
 import com.example.hexagonal.framework.adapter.out.jpa.entity.BatteryJpaEntity;
 import com.example.hexagonal.framework.exception.PersistenceException;

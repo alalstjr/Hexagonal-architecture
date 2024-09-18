@@ -1,6 +1,5 @@
-package com.example.hexagonal.domain.entity;
+package com.example.hexagonal.domain;
 
-import com.example.hexagonal.domain.vo.Battery;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

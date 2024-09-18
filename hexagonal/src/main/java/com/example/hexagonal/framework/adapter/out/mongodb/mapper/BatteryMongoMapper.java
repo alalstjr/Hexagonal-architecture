@@ -1,6 +1,6 @@
 package com.example.hexagonal.framework.adapter.out.mongodb.mapper;
 
-import com.example.hexagonal.domain.vo.Battery;
+import com.example.hexagonal.domain.Battery;
 import com.example.hexagonal.framework.adapter.out.mongodb.entity.BatteryMongoEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MapperConfig;

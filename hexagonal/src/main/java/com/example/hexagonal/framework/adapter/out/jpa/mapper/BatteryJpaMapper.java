@@ -1,6 +1,6 @@
 package com.example.hexagonal.framework.adapter.out.jpa.mapper;
 
-import com.example.hexagonal.domain.vo.Battery;
+import com.example.hexagonal.domain.Battery;
 import com.example.hexagonal.framework.adapter.out.jpa.entity.BatteryJpaEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MapperConfig;

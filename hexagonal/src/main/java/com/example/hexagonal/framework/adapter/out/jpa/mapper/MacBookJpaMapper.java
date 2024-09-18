@@ -1,7 +1,7 @@
 package com.example.hexagonal.framework.adapter.out.jpa.mapper;
 
 import com.example.hexagonal.application.port.in.dto.MacBookDto;
-import com.example.hexagonal.domain.entity.MacBook;
+import com.example.hexagonal.domain.MacBook;
 import com.example.hexagonal.framework.adapter.out.jpa.entity.BatteryJpaEntity;
 import com.example.hexagonal.framework.adapter.out.jpa.entity.MacBookJpaEntity;
 import org.mapstruct.Mapper;

@@ -2,8 +2,8 @@ package com.example.hexagonal.application.port.in.mapper;
 
 import com.example.hexagonal.application.port.in.dto.MacBookCreateDto;
 import com.example.hexagonal.application.port.in.dto.MacBookDto;
-import com.example.hexagonal.domain.entity.MacBook;
-import com.example.hexagonal.domain.vo.Battery;
+import com.example.hexagonal.domain.MacBook;
+import com.example.hexagonal.domain.Battery;
 import org.mapstruct.Mapper;
 import org.mapstruct.MapperConfig;
 import org.mapstruct.Mapping;

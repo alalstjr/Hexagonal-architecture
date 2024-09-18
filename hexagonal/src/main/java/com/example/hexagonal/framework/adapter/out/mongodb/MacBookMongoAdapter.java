@@ -2,7 +2,7 @@ package com.example.hexagonal.framework.adapter.out.mongodb;
 
 import com.example.hexagonal.application.port.out.MacBookManagementOutPort;
 import com.example.hexagonal.common.PersistenceAdapter;
-import com.example.hexagonal.domain.entity.MacBook;
+import com.example.hexagonal.domain.MacBook;
 import com.example.hexagonal.framework.adapter.out.mongodb.entity.BatteryMongoEntity;
 import com.example.hexagonal.framework.adapter.out.mongodb.entity.MacBookMongoEntity;
 import com.example.hexagonal.framework.adapter.out.mongodb.mapper.BatteryMongoMapper;

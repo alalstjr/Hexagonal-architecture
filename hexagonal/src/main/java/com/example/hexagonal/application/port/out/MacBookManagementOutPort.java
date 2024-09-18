@@ -1,6 +1,6 @@
 package com.example.hexagonal.application.port.out;
 
-import com.example.hexagonal.domain.entity.MacBook;
+import com.example.hexagonal.domain.MacBook;
 
 import java.util.List;
 import java.util.Optional;

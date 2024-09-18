@@ -1,4 +1,4 @@
-package com.example.hexagonal.domain.vo;
+package com.example.hexagonal.domain;
 
 import lombok.Builder;
 
